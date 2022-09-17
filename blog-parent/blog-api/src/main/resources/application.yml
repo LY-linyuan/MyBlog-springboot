@@ -19,5 +19,5 @@ mybatis-plus:
   global-config:
     db-config:
       table-prefix: ms_
-  # type-aliases-package: com.tang.blog.dao.pojo
-  # mapper-locations: classpath:com/tang/blog/dao/mapper/*.xml
+  type-aliases-package: com.tang.blog.dao.pojo
+  mapper-locations: classpath:com/tang/blog/dao/mapper/*.xml

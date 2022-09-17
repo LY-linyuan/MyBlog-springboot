@@ -6,9 +6,11 @@ import com.tang.blog.service.TagService;
 import com.tang.blog.vo.TagVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,5 +43,16 @@ public class TagServiceImpl implements TagService {
         TagVo tagVo = new TagVo();
         BeanUtils.copyProperties(tag, tagVo);
         return tagVo;
+    }
+
+    @Override
+    public List<Tag> hots(int limit) {
+        List<Long> tagIds = tagMapper.findHotsTagIds(limit);
+
+        if (CollectionUtils.isEmpty(tagIds)) {
+            return Collections.emptyList();
+        }
+        List<Tag> tagList = tagMapper.findTagsByTagIds(tagIds);
+        return tagList;
     }
 }
