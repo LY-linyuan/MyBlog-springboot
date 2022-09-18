@@ -1,6 +1,7 @@
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\mapper\TagMapper.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\config\MybatisPlusConfig.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\service\TagService.java
+C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\handler\AllExceptionHandler.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\service\ArticleService.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\service\impl\SysUserServiceImpl.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\service\impl\TagServiceImpl.java

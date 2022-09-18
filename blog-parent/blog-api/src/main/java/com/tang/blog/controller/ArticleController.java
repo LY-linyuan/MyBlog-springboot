@@ -1,5 +1,6 @@
 package com.tang.blog.controller;
 
+import com.tang.blog.dao.pojo.Article;
 import com.tang.blog.service.ArticleService;
 import com.tang.blog.vo.ArticleVo;
 import com.tang.blog.vo.Result;
@@ -36,4 +37,17 @@ public class ArticleController {
         List<ArticleVo> articleVoList = articleService.listArticlesPage(pageParams);
         return Result.success(articleVoList);
     }
+
+    @PostMapping("/hot")
+    public Result hotArticle() {
+        int limit = 5;
+        return articleService.hotArticle(limit);
+    }
+
+    @PostMapping("/new")
+    public Result newArticle() {
+        int limit = 5;
+        return articleService.newArticle(limit);
+    }
+
 }

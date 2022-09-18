@@ -8,6 +8,7 @@ import com.tang.blog.service.ArticleService;
 import com.tang.blog.service.SysUserService;
 import com.tang.blog.service.TagService;
 import com.tang.blog.vo.ArticleVo;
+import com.tang.blog.vo.Result;
 import com.tang.blog.vo.params.PageParams;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
@@ -75,5 +76,28 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
         return articleVo;
+    }
+
+    @Override
+    public Result hotArticle(int limit) {
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>();
+        queryWrapper.orderByDesc(Article::getViewCounts);
+        queryWrapper.select(Article::getId, Article::getTitle);
+        // "limit" 后要加空格, 不要忘记加空格, 不然会把数据拼到一起
+        queryWrapper.last("limit " + limit);
+        List<Article> articleList = articleMapper.selectList(queryWrapper);
+        return Result.success(copyList(articleList, false, false));
+    }
+
+
+    @Override
+    public Result newArticle(int limit) {
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>();
+        queryWrapper.orderByDesc(Article::getCreateDate);
+        queryWrapper.select(Article::getId, Article::getTitle);
+        // "limit" 后要加空格, 不要忘记加空格, 不然会把数据拼到一起
+        queryWrapper.last("limit " + limit);
+        List<Article> articleList = articleMapper.selectList(queryWrapper);
+        return Result.success(copyList(articleList, false, false));
     }
 }

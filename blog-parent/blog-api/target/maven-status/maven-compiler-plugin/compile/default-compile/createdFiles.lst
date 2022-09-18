@@ -6,6 +6,7 @@ com\tang\blog\dao\mapper\ArticleMapper.class
 com\tang\blog\dao\mapper\TagMapper.class
 com\tang\blog\controller\ArticleController.class
 com\tang\blog\vo\ArticleVo.class
+com\tang\blog\handler\AllExceptionHandler.class
 com\tang\blog\service\impl\TagServiceImpl.class
 com\tang\blog\dao\pojo\Tag.class
 com\tang\blog\vo\TagVo.class
