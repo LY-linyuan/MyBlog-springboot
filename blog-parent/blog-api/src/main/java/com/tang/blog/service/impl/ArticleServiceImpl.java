@@ -2,6 +2,7 @@ package com.tang.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tang.blog.dao.dos.Archives;
 import com.tang.blog.dao.mapper.ArticleMapper;
 import com.tang.blog.dao.pojo.Article;
 import com.tang.blog.service.ArticleService;
@@ -99,5 +100,11 @@ public class ArticleServiceImpl implements ArticleService {
         queryWrapper.last("limit " + limit);
         List<Article> articleList = articleMapper.selectList(queryWrapper);
         return Result.success(copyList(articleList, false, false));
+    }
+
+    @Override
+    public Result listArchives() {
+        List<Archives> archivesList = articleMapper.listArchives();
+        return Result.success(archivesList);
     }
 }

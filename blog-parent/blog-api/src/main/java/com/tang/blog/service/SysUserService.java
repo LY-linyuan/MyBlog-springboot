@@ -1,6 +1,7 @@
 package com.tang.blog.service;
 
 import com.tang.blog.dao.pojo.SysUser;
+import com.tang.blog.vo.Result;
 
 /**
  * @Author 临渊
@@ -8,4 +9,12 @@ import com.tang.blog.dao.pojo.SysUser;
  */
 public interface SysUserService {
     SysUser findUserById(Long authorId);
+
+    SysUser findUser(String account, String pwd);
+
+    Result findUserByToken(String token);
+
+    SysUser finUserByAccount(String account);
+
+    void save(SysUser sysUser);
 }
