@@ -2,6 +2,7 @@ package com.tang.blog.service;
 
 import com.tang.blog.dao.pojo.SysUser;
 import com.tang.blog.vo.Result;
+import com.tang.blog.vo.UserVo;
 
 /**
  * @Author 临渊
@@ -17,4 +18,6 @@ public interface SysUserService {
     SysUser finUserByAccount(String account);
 
     void save(SysUser sysUser);
+
+    UserVo findUserVoById(Long id);
 }
