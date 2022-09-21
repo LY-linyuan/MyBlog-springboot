@@ -73,7 +73,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        //如果不删除 ThreadLocal中用完的信息 会有内存泄漏的风险
+        // 如果不删除 ThreadLocal中用完的信息 会有内存泄漏的风险
         UserThreadLocal.remove();
     }
 }

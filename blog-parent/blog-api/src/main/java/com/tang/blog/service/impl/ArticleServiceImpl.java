@@ -1,6 +1,7 @@
 package com.tang.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tang.blog.dao.dos.Archives;
 import com.tang.blog.dao.mapper.ArticleBodyMapper;
@@ -50,24 +51,57 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ThreadService threadService;
 
+
     @Override
     public List<ArticleVo> listArticlesPage(PageParams pageParams) {
-        /**
-         *  1. 分页查询article数据库表
-         */
         Page<Article> page = new Page<Article>(pageParams.getPage(), pageParams.getPageSize());
-        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>();
-        // 是否置顶进行排序   // 事件倒叙排列相当于order by create_date desc
-        queryWrapper.orderByDesc(Article::getWeight, Article::getCreateDate);
-        Page<Article> articlePage = articleMapper.selectPage(page, queryWrapper);
-        List<Article> records = articlePage.getRecords();
-        // 要返回的我们定义的vo数据, 就是对应的前端数据, 不应该只返回现在的数据, 需要进一步进行处理
-        List<ArticleVo> articleVoList = copyList(records, true, true);
+        IPage<Article> articleIPage = this.articleMapper.listArticle(page, pageParams.getCategoryId(), pageParams.getTagId(), pageParams.getYear(), pageParams.getMonth());
+        List<ArticleVo> articleVoList = copyList(articleIPage.getRecords(), true, true);
         return articleVoList;
     }
+
+    /*@Override
+    public List<ArticleVo> listArticlesPage(PageParams pageParams) {
+        *//**
+         *  1. 分页查询article数据库表
+         *//*
+        Page<Article> page = new Page<>(pageParams.getPage(), pageParams.getPageSize());
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<>();
+        if (pageParams.getCategoryId()!=null) {
+            //and category_id=#{categoryId}
+            queryWrapper.eq(Article::getCategoryId,pageParams.getCategoryId());
+        }
+        List<Long> articleIdList = new ArrayList<>();
+        if(pageParams.getTagId()!=null){
+            //加入标签条件查询
+            //article表中并没有tag字段 一篇文章有多个标签
+            //articie_tog article_id 1：n tag_id
+            //我们需要利用一个全新的属于文章标签的queryWrapper将这篇文章的article_Tag查出来，保存到一个list当中。
+            // 然后再根据queryWrapper的in方法选择我们需要的标签即可。
+
+            LambdaQueryWrapper<ArticleTag> articleTagLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            articleTagLambdaQueryWrapper.eq(ArticleTag::getTagId,pageParams.getTagId());
+            List<ArticleTag> articleTags = articleTagMapper.selectList(articleTagLambdaQueryWrapper);
+            for (ArticleTag articleTag : articleTags) {
+                articleIdList.add(articleTag.getArticleId());
+            }
+            if (articleTags.size() > 0) {
+                // and id in(1,2,3)
+                queryWrapper.in(Article::getId,articleIdList);
+            }
+
+        }
+        //是否置顶进行排序       //时间倒序进行排列相当于order by create_data desc
+        queryWrapper.orderByDesc(Article::getWeight,Article::getCreateDate);
+        Page<Article> articlePage = articleMapper.selectPage(page, queryWrapper);
+        List<Article> records = articlePage.getRecords();
+        // 要返回我们定义的vo数据，就是对应的前端数据，不应该只返回现在的数据需要进一步进行处理
+        List<ArticleVo> articleVoList = copyList(records,true,true);
+        return articleVoList;
+    }*/
     // 方法重载，方法名相同参数数量不同
     private List<ArticleVo> copyList(List<Article> records, boolean isTag, boolean isAuthor) {
-        List<ArticleVo> articleVoList = new ArrayList<>();
+        List<ArticleVo> articleVoList = new ArrayList<ArticleVo>();
         for (Article record : records) {
             articleVoList.add(copy(record, isTag, isAuthor, false, false));
         }
@@ -75,14 +109,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     private List<ArticleVo> copyList(List<Article> records, boolean isTag, boolean isAuthor, boolean isBody) {
-        List<ArticleVo> articleVoList = new ArrayList<>();
+        List<ArticleVo> articleVoList = new ArrayList<ArticleVo>();
         for (Article record : records) {
             articleVoList.add(copy(record, isTag, isAuthor, isBody, false));
         }
         return articleVoList;
     }
     private List<ArticleVo> copyList(List<Article> records, boolean isTag, boolean isAuthor, boolean isBody, boolean isCategory) {
-        List<ArticleVo> articleVoList = new ArrayList<>();
+        List<ArticleVo> articleVoList = new ArrayList<ArticleVo>();
         for (Article record : records) {
             articleVoList.add(copy(record, isTag, isAuthor, isBody, isCategory));
         }

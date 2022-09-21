@@ -44,6 +44,7 @@ C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\handler\LoginInterceptor.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\vo\TagVo.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\utils\IpUtils.java
+C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\controller\UploadController.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\utils\UserThreadLocal.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\service\ThreadService.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\controller\LoginController.java
@@ -52,6 +53,7 @@ C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\controller\UserController.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\vo\UserVo.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\mapper\SysUserMapper.java
+C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\utils\QiniuUtils.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\controller\TagController.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\mapper\ArticleMapper.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\pojo\Article.java

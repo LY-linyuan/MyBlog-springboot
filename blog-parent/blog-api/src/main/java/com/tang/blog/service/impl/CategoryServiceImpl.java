@@ -40,6 +40,13 @@ public class CategoryServiceImpl implements CategoryService {
         return Result.success(copyList(categoryList));
     }
 
+    @Override
+    public Result findAllDetail() {
+        List<Category> categoryList = categoryMapper.selectList(new LambdaQueryWrapper<>());
+        // 页面交互的对象
+        return Result.success(copyList(categoryList));
+    }
+
     private List<CategoryVo> copyList(List<Category> categoryList) {
         List<CategoryVo> categoryVoList = new ArrayList<CategoryVo>();
         for (Category category: categoryList) {
@@ -54,5 +61,13 @@ public class CategoryServiceImpl implements CategoryService {
         BeanUtils.copyProperties(category, categoryVo);
         categoryVo.setId(category.getId());
         return categoryVo;
+    }
+
+    @Override
+    public Result categoriesDetailById(Long id) {
+        Category category = categoryMapper.selectById(id);
+        // 转换为CategoryVo
+        CategoryVo categoryVo = copy(category);
+        return Result.success(categoryVo);
     }
 }
