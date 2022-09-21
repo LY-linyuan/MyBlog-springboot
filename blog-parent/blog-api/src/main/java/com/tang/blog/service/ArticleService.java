@@ -2,6 +2,7 @@ package com.tang.blog.service;
 
 import com.tang.blog.vo.ArticleVo;
 import com.tang.blog.vo.Result;
+import com.tang.blog.vo.params.ArticleParam;
 import com.tang.blog.vo.params.PageParams;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface ArticleService {
     Result listArchives();
 
     Result findArticleById(Long articleId);
+
+    Result publish(ArticleParam articleParam);
 }

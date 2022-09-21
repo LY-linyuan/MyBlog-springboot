@@ -1,8 +1,10 @@
 package com.tang.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.tang.blog.dao.mapper.TagMapper;
 import com.tang.blog.dao.pojo.Tag;
 import com.tang.blog.service.TagService;
+import com.tang.blog.vo.Result;
 import com.tang.blog.vo.TagVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -54,5 +56,12 @@ public class TagServiceImpl implements TagService {
         }
         List<Tag> tagList = tagMapper.findTagsByTagIds(tagIds);
         return tagList;
+    }
+
+
+    @Override
+    public Result findAll() {
+        List<Tag> tagList = tagMapper.selectList(new LambdaQueryWrapper<>());
+        return Result.success(copyList(tagList));
     }
 }

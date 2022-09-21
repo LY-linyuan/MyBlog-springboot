@@ -5,13 +5,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tang.blog.dao.dos.Archives;
 import com.tang.blog.dao.mapper.ArticleBodyMapper;
 import com.tang.blog.dao.mapper.ArticleMapper;
+import com.tang.blog.dao.mapper.ArticleTagMapper;
 import com.tang.blog.dao.pojo.Article;
 import com.tang.blog.dao.pojo.ArticleBody;
+import com.tang.blog.dao.pojo.ArticleTag;
+import com.tang.blog.dao.pojo.SysUser;
 import com.tang.blog.service.*;
-import com.tang.blog.vo.ArticleBodyVo;
-import com.tang.blog.vo.ArticleVo;
-import com.tang.blog.vo.CategoryVo;
-import com.tang.blog.vo.Result;
+import com.tang.blog.utils.UserThreadLocal;
+import com.tang.blog.vo.*;
+import com.tang.blog.vo.params.ArticleParam;
 import com.tang.blog.vo.params.PageParams;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
@@ -33,6 +35,8 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleMapper articleMapper;
     @Resource
     private ArticleBodyMapper articleBodyMapper;
+    @Resource
+    private ArticleTagMapper articleTagMapper;
 
 
     @Resource
@@ -168,4 +172,55 @@ public class ArticleServiceImpl implements ArticleService {
         // threadService.updateArticleViewCount(articleMapper,article);
         return Result.success(articleVo);
     }
+
+    @Override
+    public Result publish(ArticleParam articleParam) {
+        SysUser sysUser = UserThreadLocal.get();
+        /**
+         * 1. 发布文章 目的 构建Article对象
+         * 2. 作者id  当前的登录用户
+         * 3. 标签  要将标签加入到 关联列表当中
+         * 4. body 内容存储 article bodyId
+         */
+        Article article = new Article();
+        article.setAuthorId(sysUser.getId());
+        article.setCategoryId(articleParam.getCategory().getId());
+        article.setCreateDate(System.currentTimeMillis());
+        article.setCommentCounts(0);
+        article.setSummary(articleParam.getSummary());
+        article.setTitle(articleParam.getTitle());
+        article.setViewCounts(0);
+        article.setWeight(Article.Article_Common);
+        article.setBodyId(-1L);
+        // 插入之后 会生成一个文章id（因为新建的文章没有文章id所以要insert一下
+        // 官网解释："insert后主键会自动'set到实体的ID字段。所以你只需要"getId()就好
+        // 利用主键自增，mp的insert操作后id值会回到参数对象中
+        articleMapper.insert(article);
+
+        // tags
+        List<TagVo> tagVoList = articleParam.getTags();
+        if (tagVoList != null) {
+            for (TagVo tag : tagVoList) {
+                ArticleTag articleTag = new ArticleTag();
+                articleTag.setArticleId(article.getId());
+                articleTag.setTagId(tag.getId());
+                this.articleTagMapper.insert(articleTag);
+            }
+        }
+        // body
+        ArticleBody articleBody = new ArticleBody();
+        articleBody.setContent(articleParam.getBody().getContent());
+        articleBody.setContentHtml(articleParam.getBody().getContentHtml());
+        articleBody.setArticleId(article.getId());
+        articleBodyMapper.insert(articleBody);
+        // 插入完之后再给一个id
+        article.setBodyId(articleBody.getId());
+        //只有当更改数据库时才插入或者更新，一般查询就可以了
+        articleMapper.updateById(article);
+
+        ArticleVo articleVo = new ArticleVo();
+        articleVo.setId(article.getId());
+        return Result.success(articleVo);
+    }
+
 }

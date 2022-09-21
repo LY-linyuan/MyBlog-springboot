@@ -1,6 +1,7 @@
 package com.tang.blog.service;
 
 import com.tang.blog.vo.CategoryVo;
+import com.tang.blog.vo.Result;
 
 /**
  * @Author 临渊
@@ -8,4 +9,6 @@ import com.tang.blog.vo.CategoryVo;
  */
 public interface CategoryService {
     CategoryVo findCategoryById(Long id);
+
+    Result findAll();
 }

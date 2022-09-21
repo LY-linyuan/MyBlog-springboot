@@ -1,13 +1,17 @@
 package com.tang.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.tang.blog.dao.mapper.CategoryMapper;
 import com.tang.blog.dao.pojo.Category;
 import com.tang.blog.service.CategoryService;
 import com.tang.blog.vo.CategoryVo;
+import com.tang.blog.vo.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author 临渊
@@ -26,6 +30,29 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryVo categoryVo = new CategoryVo();
         // 因为category, categoryVo属性一样所以可以使用 BeanUtils.copyProperties
         BeanUtils.copyProperties(category,categoryVo);
+        return categoryVo;
+    }
+
+    @Override
+    public Result findAll() {
+        // 没有任何参数，所有一个空的LambdaQueryWrapper即可
+        List<Category> categoryList = categoryMapper.selectList(new LambdaQueryWrapper<>());
+        return Result.success(copyList(categoryList));
+    }
+
+    private List<CategoryVo> copyList(List<Category> categoryList) {
+        List<CategoryVo> categoryVoList = new ArrayList<CategoryVo>();
+        for (Category category: categoryList) {
+            categoryVoList.add(copy(category));
+        }
+        return categoryVoList;
+    }
+
+    private CategoryVo copy(Category category) {
+        CategoryVo categoryVo = new CategoryVo();
+        // id不一致要重新设立
+        BeanUtils.copyProperties(category, categoryVo);
+        categoryVo.setId(category.getId());
         return categoryVo;
     }
 }
