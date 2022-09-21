@@ -1,7 +1,9 @@
 com\tang\blog\controller\UserController.class
 com\tang\blog\vo\CategoryVo.class
+com\tang\blog\utils\HttpContextUtils.class
 com\tang\blog\config\WebMVCConfig.class
 com\tang\blog\service\TagService.class
+com\tang\blog\utils\IpUtils.class
 com\tang\blog\vo\UserVo.class
 com\tang\blog\vo\ArticleVo.class
 com\tang\blog\vo\params\CommentParam.class
@@ -10,12 +12,14 @@ com\tang\blog\vo\TagVo.class
 com\tang\blog\config\MybatisPlusConfig.class
 com\tang\blog\dao\pojo\Comment.class
 com\tang\blog\dao\pojo\ArticleTag.class
+com\tang\blog\common\aop\LogAnnotation.class
 com\tang\blog\BlogApp.class
 com\tang\blog\vo\params\PageParams.class
 com\tang\blog\controller\TestController.class
 com\tang\blog\service\LoginService.class
 com\tang\blog\service\impl\CategoryServiceImpl.class
 com\tang\blog\dao\mapper\ArticleTagMapper.class
+com\tang\blog\common\aop\LogAspect.class
 com\tang\blog\dao\pojo\Category.class
 com\tang\blog\config\ThreadPoolConfig.class
 com\tang\blog\service\impl\ArticleServiceImpl.class

@@ -1,5 +1,6 @@
 package com.tang.blog.controller;
 
+import com.tang.blog.common.aop.LogAnnotation;
 import com.tang.blog.dao.pojo.Article;
 import com.tang.blog.service.ArticleService;
 import com.tang.blog.vo.ArticleVo;
@@ -30,6 +31,7 @@ public class ArticleController {
      */
     // Result 是统一返回结果
     @PostMapping
+    @LogAnnotation(module = "文章",operation = "获取文章列表")
     public Result listArticle(@RequestBody PageParams pageParams) {
         // ArticleVo 页面接收的数据
         List<ArticleVo> articleVoList = articleService.listArticlesPage(pageParams);
