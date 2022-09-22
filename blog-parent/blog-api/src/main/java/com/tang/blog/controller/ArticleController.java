@@ -1,6 +1,7 @@
 package com.tang.blog.controller;
 
 import com.tang.blog.common.aop.LogAnnotation;
+import com.tang.blog.common.cache.Cache;
 import com.tang.blog.dao.pojo.Article;
 import com.tang.blog.service.ArticleService;
 import com.tang.blog.vo.ArticleVo;
@@ -39,6 +40,7 @@ public class ArticleController {
     }
 
     @PostMapping("/hot")
+    @Cache(expire = 5 * 60 * 1000,name = "hot_article")
     public Result hotArticle() {
         int limit = 5;
         return articleService.hotArticle(limit);

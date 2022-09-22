@@ -26,6 +26,7 @@ com\tang\blog\config\ThreadPoolConfig.class
 com\tang\blog\service\impl\ArticleServiceImpl.class
 com\tang\blog\dao\pojo\ArticleBody.class
 com\tang\blog\utils\UserThreadLocal.class
+com\tang\blog\common\cache\CacheAspect.class
 com\tang\blog\service\CommentsService.class
 com\tang\blog\vo\params\LoginParams.class
 com\tang\blog\dao\mapper\ArticleMapper.class
@@ -61,5 +62,6 @@ com\tang\blog\controller\CommentsController.class
 com\tang\blog\controller\CategoryController.class
 com\tang\blog\service\SysUserService.class
 com\tang\blog\service\impl\CommentsServiceImpl.class
+com\tang\blog\common\cache\Cache.class
 com\tang\blog\controller\RegisterController.class
 com\tang\blog\vo\Result.class

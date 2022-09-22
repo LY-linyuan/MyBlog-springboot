@@ -53,12 +53,14 @@ C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\controller\UserController.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\vo\UserVo.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\mapper\SysUserMapper.java
+C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\common\cache\Cache.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\utils\QiniuUtils.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\controller\TagController.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\mapper\ArticleMapper.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\dao\pojo\Article.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\config\WebMVCConfig.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\service\SysUserService.java
+C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\common\cache\CacheAspect.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\vo\ArticleBodyVo.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\vo\params\ArticleBodyParam.java
 C:\programme\java\实战项目\在线博客系统\project\personal-blog-project\blog-parent\blog-api\src\main\java\com\tang\blog\vo\Result.java
