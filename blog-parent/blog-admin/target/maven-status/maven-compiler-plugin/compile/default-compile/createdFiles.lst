@@ -1,2 +1,10 @@
+com\tang\blog\admin\vo\PageResult.class
+com\tang\blog\admin\controller\AdminController.class
+com\tang\blog\admin\pojo\Permission.class
+com\tang\blog\admin\vo\Result.class
+com\tang\blog\admin\model\params\PageParam.class
 com\tang\blog\admin\AdminApp.class
+com\tang\blog\admin\service\impl\PermissionServiceImpl.class
+com\tang\blog\admin\service\PermissionService.class
 com\tang\blog\admin\config\MybatisPlusConfig.class
+com\tang\blog\admin\mapper\PermissionMapper.class
